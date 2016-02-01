@@ -1,0 +1,9 @@
+.jumbotron
+  = if @crashed do
+    h2 Ugh, I'm dead! (500 UGH)
+  - else
+    h2 I am alive! (200 OK)
+    = form_for @conn, page_path(@conn, :crash), [name: :crashed], fn f ->
+      = hidden_input f, :status_code, value: 500
+      = hidden_input f, :duration, value: 20
+      = submit "Crash It!"
