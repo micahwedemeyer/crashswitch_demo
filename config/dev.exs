@@ -32,6 +32,14 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
+config :exredis,
+  host: "127.0.0.1",
+  port: 6379,
+  password: "",
+  db: 0,
+  reconnect: :no_reconnect,
+  max_queue: :infinity
+
 # Configure your database
 config :crashswitch_demo, CrashswitchDemo.Repo,
   adapter: Ecto.Adapters.Postgres,

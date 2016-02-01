@@ -31,12 +31,3 @@ config :phoenix, :generators,
 config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
-
-
-config :exredis,
-  host: "127.0.0.1",
-  port: 6379,
-  password: "",
-  db: 0,
-  reconnect: :no_reconnect,
-  max_queue: :infinity

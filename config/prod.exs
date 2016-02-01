@@ -13,11 +13,22 @@ use Mix.Config
 # which you typically run after static files are built.
 config :crashswitch_demo, CrashswitchDemo.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  url: [host: "crashswitch.me", port: 80],
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+# Configure your database
+config :crashswitch_demo, CrashswitchDemo.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: 20
+
+config :exredis,
+  url: System.get_env("REDIS_URL"),
+  reconnect: :no_reconnect,
+  max_queue: :infinity
 
 # ## SSL Support
 #
@@ -62,4 +73,3 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
