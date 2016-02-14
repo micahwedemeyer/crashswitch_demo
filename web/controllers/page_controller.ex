@@ -12,7 +12,8 @@ defmodule CrashswitchDemo.PageController do
         {code, _} = Integer.parse(crash_code, 10)
         conn 
         |> put_status(code)
-        |> render("index.html", crashed: true)
+        |> put_layout(false)
+        |> render("#{code}.html")
     end
   end
 

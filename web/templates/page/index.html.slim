@@ -1,9 +1,11 @@
 .jumbotron
-  = if @crashed do
-    h2 Ugh, I'm dead! (500 UGH)
-  - else
-    h2 I am alive! (200 OK)
-    = form_for @conn, page_path(@conn, :crash), [name: :crashed], fn f ->
-      = hidden_input f, :status_code, value: 500
-      = hidden_input f, :duration, value: 20
+  h2 I am alive! (200 OK)
+  = form_for @conn, page_path(@conn, :crash), [name: :crashed], fn f ->
+    .form-group
       = submit "Crash It!"
+    .form-group
+      = label f, :status_code, "Status Code (HTTP)", class: "control-label"
+      = select f, :status_code, ["500 Error": 500, "502 Bad Gateway": 502, "503 Unavailable": 503]
+    .form-group
+      = label f, :duration, "Duration", class: "control-label"
+      = select f, :duration, ["30s": 30, "1m": 60, "5m": 300, "10m": 600]
