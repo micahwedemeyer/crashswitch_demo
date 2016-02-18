@@ -1,11 +1,22 @@
-.jumbotron
-  h2 I am alive! (200 OK)
-  = form_for @conn, page_path(@conn, :crash), [name: :crashed], fn f ->
-    .form-group
-      = submit "Crash It!"
-    .form-group
-      = label f, :status_code, "Status Code (HTTP)", class: "control-label"
-      = select f, :status_code, ["500 Error": 500, "502 Bad Gateway": 502, "503 Unavailable": 503]
-    .form-group
-      = label f, :duration, "Duration", class: "control-label"
-      = select f, :duration, ["30s": 30, "1m": 60, "5m": 300, "10m": 600]
+.row
+  .small-12.columns
+    .primary.callout
+      .row.align-center
+        .medium-2.small-4.columns
+          img src="#{static_path(@conn, "/images/doge_head.png")}"
+        .medium-4.small-8.columns
+          h2 Much Website!
+          h4 200 Okay!
+
+      = form_for @conn, page_path(@conn, :crash), [name: :crashed], fn f ->
+        .row.align-center
+          .medium-1.small-3.columns
+            = submit "Crash Me!"
+        .row.align-center
+          .medium-6.small-12.columns
+            = label f, :status_code, "Status Code (HTTP)"
+            = select f, :status_code, ["500 Error": 500, "502 Bad Gateway": 502, "503 Unavailable": 503]
+        .row.align-center
+          .medium-6.small-12.columns
+            = label f, :duration, "Duration"
+            = select f, :duration, ["3m": 180, "5m": 300, "10m": 600]
